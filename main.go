@@ -3,14 +3,12 @@ package main
 import (
 	"fmt"
 	"gogetter/stores"
+	"gogetter/svc"
 )
 
 func main() {
 	stub := stores.Stub{Path: "datasets.json"}
-	datasets := stub.GetDatasets()
-	fmt.Println(datasets.Items)
-	fmt.Println(datasets.Count)
-	dataset := stub.GetDataset("cpih")
-	fmt.Println(dataset.Id)
-	fmt.Println(dataset.PublicationDate)
+	svc := svc.New(&stub)
+	fmt.Println(svc.Store.GetDatasets())
+	fmt.Println(svc.Store.GetDataset("cpih"))
 }
